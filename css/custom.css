@@ -1,0 +1,24 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ui-datepicker-calendar {
+    display: none;
+}
+
+.scroll {
+    width: 1200px;
+    background: rgb(220, 237, 252);
+    padding: 30px;
+    overflow: scroll;
+    height: 800px;
+    line-height: 1.5em;
+    /*script tambahan khusus untuk IE */
+    scrollbar-face-color: #CE7E00;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #6F4709;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-darkshadow-color: #6F4709;
+    scrollbar-track-color: #FFE8C1;
+    scrollbar-arrow-color: #6F4709;
+}
