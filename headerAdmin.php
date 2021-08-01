@@ -60,7 +60,7 @@ if (!isset($_SESSION['login']['level'])) {
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="index.php?page=perhitungan">Perhitungan Fuzzy C-Means</a>
-                                <a class="dropdown-item" href="index.php?page=hasilklasifikasi">Hasil Klasifikasi</a>
+                                <a class="dropdown-item" href="index.php?page=hasilklasifikasi">Hasil Clustering</a>
                             </div>
                         </li>
                     <?php elseif ($_SESSION['login']['level'] == '2') : ?>
@@ -76,7 +76,7 @@ if (!isset($_SESSION['login']['level'])) {
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="index.php?page=perhitungan">Perhitungan Fuzzy C-Means</a>
-                                <a class="dropdown-item" href="index.php?page=hasilklasifikasi">Hasil Klasifikasi</a>
+                                <a class="dropdown-item" href="index.php?page=hasilklasifikasi">Hasil Clustering</a>
                             </div>
                         </li>
                     <?php elseif ($_SESSION['login']['level'] == '3') : ?>
@@ -84,14 +84,8 @@ if (!isset($_SESSION['login']['level'])) {
                             <a class="nav-link" href="index.php?page=datamasyarakat">Data Masyarakat</a>
                         </li>
                         <li class="nav-item-item active">
-                            <a class="nav-link" href="index.php?page=hasilklasifikasi">Data Masyarakat klasifikasi</a>
+                            <a class="nav-link" href="index.php?page=hasilklasifikasi">Data Masyarakat Clustering</a>
                         </li>
-                        <?php
-                        // elseif ($_SESSION['login']['level'] == '4') :
-                        ?>
-                        <!-- <li class="nav-item-item active">
-                            <a class="nav-link" href="index.php?page=datadiri">Data Diri</a>
-                        </li> -->
                     <?php endif; ?>
                     <li class="nav-item-item active">
                         <a class="nav-link" href="index.php?page=info">Info</a>

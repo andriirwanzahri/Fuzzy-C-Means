@@ -239,18 +239,124 @@ elseif (isset($_POST['proses'])) :
         }
         $keangotaan[$d][$jmlCluster - 1] = 1 - $tot;
     }
-    // if ($jmlCluster == 3) {
-    //     $keangotaan = array(
-    //         array(0.3, 0.3, 0.4),
-    //         array(0.3, 0.5, 0.2),
-    //         array(0.8, 0.1, 0.1),
-    //         array(0.5, 0.2, 0.3),
-    //         array(0.5, 0.1, 0.4),
-    //         array(0.2, 0.1, 0.7),
-    //         array(0.3, 0.4, 0.3),
-    //         array(0.6, 0.2, 0.2)
-    //     );
-    // }
+    if ($jmlCluster == 3 and $jmlData == 11) {
+        $keangotaan = array(
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.6, 0.2, 0.2)
+        );
+    }
+    if ($jmlCluster == 3 and $jmlData == 100) {
+        $keangotaan = array(
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.5, 0.1, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.3, 0.3, 0.4),
+            array(0.3, 0.5, 0.2),
+            array(0.8, 0.1, 0.1),
+            array(0.5, 0.2, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.2, 0.1, 0.7),
+            array(0.3, 0.4, 0.3),
+            array(0.5, 0.1, 0.4),
+            array(0.6, 0.2, 0.2)
+        );
+    }
 
     $miu_kuadrat = array(array());
     $miu_kuadrat_x = array(array(array()));
@@ -403,7 +509,7 @@ elseif (isset($_POST['proses'])) :
     if ($ketemu == true) {
         echo "<br/>";
         echo "<br/>";
-        echo "Hasil di dapatkan Objectifit";
+        echo "Hasil di dapatkan Objectifit Akhir";
         echo "<br/>";
         echo "<br/>";
         echo "Berhenti pada Iterasi Ke = " . ($iterasi + 1) . "<br/><br/>";

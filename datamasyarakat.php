@@ -15,14 +15,14 @@ if (isset($_GET["hapus"])) {
     }
 }
 
-if (isset($_POST['ubah'])) {
-    var_dump($_POST);
-    // $id_keluarga = $_POST['id'];
-    // $das = mysqli_query($conn, "SELECT * FROM data_keluarga_kriteria WHERE id_keluarga='$id_keluarga'");
-    // while ($k = mysqli_fetch_array($Qkiteria)) {
-    //     $query = "UPDATE data_keluarga_kriteria SET nilai=$nilaiK WHERE id_keluarga='$id_keluarga' AND id_kriteria='$id_kriteria'";
-    // }
-}
+// if (isset($_POST['ubah'])) {
+//     var_dump($_POST);
+//     // $id_keluarga = $_POST['id'];
+//     // $das = mysqli_query($conn, "SELECT * FROM data_keluarga_kriteria WHERE id_keluarga='$id_keluarga'");
+//     // while ($k = mysqli_fetch_array($Qkiteria)) {
+//     //     $query = "UPDATE data_keluarga_kriteria SET nilai=$nilaiK WHERE id_keluarga='$id_keluarga' AND id_kriteria='$id_kriteria'";
+//     // }
+// }
 
 $keluarga = array();
 $querykeluarga = mysqli_query($conn, "SELECT * FROM data_keluarga ORDER BY id_keluarga");
@@ -100,6 +100,7 @@ if (!empty($pesan_success)) {
     display_success($pesan_success);
 }
 ?>
+<button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#KeteranganModal">Keterangan</button>
 <h1 class=" mt-3 h3 mb-2 text-gray-800">Data Masyarakat</h1>
 
 <!-- DataTales Example -->
@@ -128,86 +129,83 @@ if (!empty($pesan_success)) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <?php
-                        $data = query("SELECT * FROM data_keluarga");
-                        $j = 0;
-                        foreach ($data as $d) {
-                        ?>
-                    <tr>
-                        <td><?= $d['nama_keluarga']; ?></td>
-                        <td><?= $d['id_keluarga']; ?></td>
-                        <?php
+                    <?php
+                    $data = query("SELECT * FROM data_keluarga");
+                    $j = 0;
+                    foreach ($data as $d) {
+                    ?>
+                        <tr>
+                            <td><?= $d['nama_keluarga']; ?></td>
+                            <td><?= $d['id_keluarga']; ?></td>
+                            <?php
                             for ($i = 0; $i < count($kriteria); $i++) {
                                 echo "<td>" . $keluargakriteria[$j][$i] . "</td>";
                             }
-                        ?>
-                        <td><a href='index.php?page=datamasyarakat&hapus=<?= $d['id_keluarga']; ?>' class="badge badge-pill badge-danger" onClick="return confirm('Anda yakin akan hapus ?')"><i class="fas fa-trash"></i> hapus</a>
-                            <a href="#" class="badge badge-pill badge-success" data-toggle="modal" data-target="#myModal<?php echo $d['id_keluarga']; ?>">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <!-- Ubah Data Jalan -->
-                    <div class="modal fade bd-example-modal-lg" id="myModal<?= $d['id_keluarga']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Ubah Kriteria</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                            ?>
+                            <td><a href='index.php?page=datamasyarakat&hapus=<?= $d['id_keluarga']; ?>' class="badge badge-pill badge-danger" onClick="return confirm('Anda yakin akan hapus ?')"><i class="fas fa-trash"></i> hapus</a>
+                                <a href="#" class="badge badge-pill badge-success" data-toggle="modal" data-target="#myModal<?php echo $d['id_keluarga']; ?>">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- Ubah Data Jalan -->
+                        <div class="modal fade bd-example-modal-lg" id="myModal<?= $d['id_keluarga']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ubah Kriteria</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <form action="" method="post">
-                                            <input type="hidden" name="id" class="form-control" value="<?= $d['id_keluarga']; ?>">
-                                            <div class="row">
-                                                <?php
-                                                $id_keluarga = $d['id_keluarga'];
-                                                $Qkiteria = mysqli_query($conn, "SELECT * FROM data_keluarga_kriteria WHERE id_keluarga='$id_keluarga'");
-                                                while ($k = mysqli_fetch_array($Qkiteria)) :
-                                                    $id_kriteria = $k['id_kriteria'];
-                                                    $sub = mysqli_query($conn, "SELECT * FROM sub_kriteria WHERE id_kriteria='$id_kriteria'");
-                                                    $lit = mysqli_num_rows($sub); ?>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputState"><?= $k['nama_kriteria']; ?></label>
-                                                        <?php if ($lit > 0) : ?>
-                                                            <input type="hidden" name="<?= $k['id_kriteria']; ?>" value="<?= $k['id_kriteria']; ?>">
-                                                            <select id="inputState" name="<?= $k['id_kriteria']; ?>" class="form-control">
-                                                                <?php
-                                                                while ($d = mysqli_fetch_array($sub)) {
-                                                                    if ($k['nilai'] == $d['nilai']) {
-                                                                ?>
-                                                                        <option selected value="<?= $d['nilai']; ?>"><?= $d['nama_sub']; ?></option>
-                                                                <?php }
-                                                                } ?>
-                                                            </select>
-                                                        <?php endif; ?>
-                                                        <?php if ($lit == 0) : ?>
-                                                            <input type="hidden" name="<?= $k['id_kriteria']; ?>" value="<?= $k['id_kriteria']; ?>">
-                                                            <input type="text" name="<?= $k['id_kriteria']; ?>" class="form-control" value="<?= $k['nilai']; ?>" placeholder="Masukkan Nilai <?= $k['id_kriteria']; ?>" id="inputCity">
-                                                        <?php endif; ?>
-                                                    </div>
-                                                <?php endwhile; ?>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                                                <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
-                                            </div>
-                                        </form>
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <form action="" method="post">
+                                                <input type="hidden" name="id" class="form-control" value="<?= $d['id_keluarga']; ?>">
+                                                <div class="row">
+                                                    <?php
+                                                    $id_keluarga = $d['id_keluarga'];
+                                                    $Qkiteria = mysqli_query($conn, "SELECT * FROM data_keluarga_kriteria WHERE id_keluarga='$id_keluarga'");
+                                                    while ($k = mysqli_fetch_array($Qkiteria)) :
+                                                        $id_kriteria = $k['id_kriteria'];
+                                                        $sub = mysqli_query($conn, "SELECT * FROM sub_kriteria WHERE id_kriteria='$id_kriteria'");
+                                                        $lit = mysqli_num_rows($sub); ?>
+                                                        <div class="form-group col-md-6">
+                                                            <label for="inputState"><?= $k['nama_kriteria']; ?></label>
+                                                            <?php if ($lit > 0) : ?>
+                                                                <input type="hidden" name="<?= $k['id_kriteria']; ?>" value="<?= $k['id_kriteria']; ?>">
+                                                                <select id="inputState" name="<?= $k['id_kriteria']; ?>" class="form-control">
+                                                                    <?php
+                                                                    while ($d = mysqli_fetch_array($sub)) {
+                                                                        if ($k['nilai'] == $d['nilai']) {
+                                                                    ?>
+                                                                            <option selected value="<?= $d['nilai']; ?>"><?= $d['nama_sub']; ?></option>
+                                                                    <?php }
+                                                                    } ?>
+                                                                </select>
+                                                            <?php endif; ?>
+                                                            <?php if ($lit == 0) : ?>
+                                                                <input type="hidden" name="<?= $k['id_kriteria']; ?>" value="<?= $k['id_kriteria']; ?>">
+                                                                <input type="text" name="<?= $k['id_kriteria']; ?>" class="form-control" value="<?= $k['nilai']; ?>" placeholder="Masukkan Nilai <?= $k['id_kriteria']; ?>" id="inputCity">
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    <?php endwhile; ?>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                                                    <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php
-                            $j++;
-                        }
-                ?>
-
-                </tr>
+                    <?php
+                        $j++;
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -227,6 +225,49 @@ if (!empty($pesan_success)) {
                 <form action="" method="post">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                     <button class="btn btn-danger" name="hapus">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="KeteranganModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Keterangan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php
+                $tkriteria = query("SELECT * FROM data_kriteria");
+
+                foreach ($tkriteria as $k) {
+                    $id = $k['id_kriteria'];
+                    $subkriteria = mysqli_query($conn, "SELECT * FROM sub_kriteria WHERE id_kriteria='$id'");
+                ?>
+
+                    <div class="row mt-5">
+                        <div class="col-md-12 text-center"><?= $k['nama_kriteria']; ?></div>
+                    </div>
+                    <div class="row">
+                        <?php
+                        while ($s = mysqli_fetch_array($subkriteria)) {
+                        ?>
+                            <div class="col-md-6 text-center"><?= $s['nama_sub']; ?></div>
+                            <div class="col-md-6 text-center"><?= $s['nilai']; ?></div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+            <div class="modal-footer">
+                <form action="" method="post">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>

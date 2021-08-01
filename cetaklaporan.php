@@ -51,7 +51,17 @@ $query = query("SELECT data_keluarga.*, data_hasil_cluster.cluster FROM data_kel
                                 <td><?= $d['nama_keluarga']; ?></td>
                                 <td><?= $d['id_keluarga']; ?></td>
                                 <td><?= $d['alamat']; ?></td>
-                                <td><?= $d['cluster']; ?></td>
+                                <td>
+                                    <?php
+                                    if ($d['cluster'] == 'Cluster1') {
+                                        echo 'Miskin';
+                                    } elseif ($d['cluster'] == 'Cluster2') {
+                                        echo 'Fakir';
+                                    } elseif ($d['cluster'] == 'Cluster3') {
+                                        echo 'Sederhana';
+                                    }
+                                    ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

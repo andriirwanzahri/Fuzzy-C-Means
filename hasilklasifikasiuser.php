@@ -5,13 +5,13 @@ $query = query("SELECT data_keluarga.*, data_hasil_cluster.cluster FROM data_kel
 ?>
 <div class="container">
     <!-- Page Heading -->
-    <h1 class=" mt-3 h3 mb-2 text-gray-800 text-center">Data Hasil Klasifikasi</h1>
+    <h1 class=" mt-3 h3 mb-2 text-gray-800 text-center">Data Hasil Pengelompokan (Clustering)</h1>
     <p class="mb-4  text-center">Data Ini Merupakaan hasil Dari clustering Fuzzy C- Means.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-success">Tabel Klasifikasi Masyarakat</h6>
+            <h6 class="m-0 font-weight-bold text-success">Tabel Pengelompokan Masyarakat</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -33,7 +33,17 @@ $query = query("SELECT data_keluarga.*, data_hasil_cluster.cluster FROM data_kel
                                 <td><?= $d['nama_keluarga']; ?></td>
                                 <td><?= $d['id_keluarga']; ?></td>
                                 <td><?= $d['alamat']; ?></td>
-                                <td><?= $d['cluster']; ?></td>
+                                <td>
+                                    <?php
+                                    if ($d['cluster'] == 'Cluster1') {
+                                        echo 'Miskin';
+                                    } elseif ($d['cluster'] == 'Cluster2') {
+                                        echo 'Fakir';
+                                    } elseif ($d['cluster'] == 'Cluster3') {
+                                        echo 'Sederhana';
+                                    }
+                                    ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
