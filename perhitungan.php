@@ -77,20 +77,23 @@ elseif (isset($_POST['proses'])) :
         $i++;
     }
 
-    // $datacoba = array(
-    //     array(1, 3),
-    //     array(3, 3),
-    //     array(4, 3),
-    //     array(5, 3),
-    //     array(1, 2),
-    //     array(4, 2),
-    //     array(1, 1),
-    //     array(2, 1)
-    // );
+    // Untuk Melakukan Perhitungan Manual
+    $datacoba = array(
+        array(80, 6, 1, 6, 1),
+        array(72, 6, 1, 6, 1),
+        array(46, 6, 1, 6, 1),
+        array(30, 8, 3, 6, 1),
+        array(40, 2, 1, 6, 1),
+        array(36, 6, 3, 6, 1),
+        array(35, 6, 3, 6, 1),
+        array(34, 3, 6, 2, 4),
+        array(42, 3, 6, 6, 1),
+        array(150, 8, 3, 6, 1)
+    );
+    $data = $datacoba;
 
 
     $data = $keluargakriteria;
-    // $data = $datacoba;
 
     mysqli_query($conn, "TRUNCATE data_hasil_cluster");
     function tampiltabel($arr, $title)
@@ -239,7 +242,7 @@ elseif (isset($_POST['proses'])) :
         }
         $keangotaan[$d][$jmlCluster - 1] = 1 - $tot;
     }
-    if ($jmlCluster == 3 and $jmlData == 11) {
+    if ($jmlCluster == 3 and $jmlData == 10) {
         $keangotaan = array(
             array(0.3, 0.3, 0.4),
             array(0.3, 0.5, 0.2),
